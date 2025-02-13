@@ -16,7 +16,8 @@
             a2.0             Improved script by replacing static name matching with dynamic sets, as well as added a variable for logfile path
             a3.0             Added a check for an empty logfile.
             a4.0             Modified to create an ouput HTML file showing player status or logfile issues. 
-            b1.0             Created Additional Pages Skills and Hours Survived. Added Navbar to All Pages.                          
+            b1.0             Created Additional Pages Skills and Hours Survived. Added Navbar to All Pages.
+            b1.1             Add CSS active class to highlight active navbar page on all pages.                          
 #>
 #MODIFY BELOW WITH THE PATH TO YOUR PVP LOG, but leave the LOGFILE alone
 $logpath = "\\192.168.1.148\appdata\projectzomboid\Zomboid\Logs\" # Path to dedicated server logs
@@ -72,10 +73,8 @@ if($loginhistory -ne $null){
 # If the data we pulled isn't empty
 if ($logindata -ne $null) {
     
-
-    
-    #Create the HTML content
-    $htmlContent = @"
+#Create the HTML content
+$htmlContent = @"
 <!DOCTYPE html>
 <html>
 <head>
@@ -116,14 +115,17 @@ if ($logindata -ne $null) {
             text-decoration: none;
             border: 1px solid #E0E0E0;
         }
+        .navbar a.active {
+            background-color: #388E3C; /* Highlight active link */
+        }
     </style>
 </head>
 <body>
     <h2>Project Zomboid Players</h2>
-     <div class="navbar">
+    <div class="navbar">
         <a href="skills.html">Skills Comparison</a>
         <a href="survived_hours.html">Hours Survived Comparison</a>
-        <a href="index.html">Player Status</a>
+        <a href="index.html" class="active">Player Status</a>
     </div>
     <table>
         <tr>
@@ -143,6 +145,16 @@ if ($logindata -ne $null) {
     $htmlContent += @"
     </table>
     <p>Last Refreshed $currentDateTime</p>
+        <script>
+        // Get the current page name
+        const currentPage = window.location.pathname.split("/").pop();
+        
+        // Highlight the active link
+        const activeLink = document.querySelector(`.navbar a[href="${currentPage}"]`);
+        if (activeLink) {
+            activeLink.classList.add("active");
+        }
+    </script>
 </body>
 </html>
 "@

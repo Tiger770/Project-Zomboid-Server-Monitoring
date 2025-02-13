@@ -13,7 +13,8 @@
 
         Changelog:
             a1.0             Initial Development
-            b1.0             Created Additional Pages Skills and Hours Survived. Added Navbar to All Pages. 
+            b1.0             Created Additional Pages Skills and Hours Survived. Added Navbar to All Pages.
+            b1.1             Add CSS active class to highlight active navbar page on all pages. 
 #>
 #MODIFY BELOW WITH THE PATH TO YOUR PVP LOG, but leave the LOGFILE alone
 $logpath = "\\192.168.1.148\appdata\projectzomboid\Zomboid\Logs\" # Path to dedicated server logs
@@ -123,12 +124,15 @@ $html = @"
             text-decoration: none;
             border: 1px solid #E0E0E0;
         }
+        .navbar a.active {
+            background-color: #388E3C; /* Highlight active link */
+        }
     </style>
 </head>
 <body>
     <h2>Project Zomboid Skills Comparison</h2>
     <div class="navbar">
-        <a href="skills.html">Skills Comparison</a>
+        <a href="skills.html" class="active">Skills Comparison</a>
         <a href="survived_hours.html">Hours Survived Comparison</a>
         <a href="index.html">Player Status</a>
     </div>
