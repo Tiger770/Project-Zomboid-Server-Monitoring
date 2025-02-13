@@ -9,13 +9,14 @@
 
         Author:             James May
         Email:              Tiger770@hotmail.com
-        Last Modified:      12/3/2024
+        Last Modified:      2/12/2025
 
         Changelog:
             a1.0             Initial Development
             a2.0             Improved script by replacing static name matching with dynamic sets, as well as added a variable for logfile path
             a3.0             Added a check for an empty logfile.
-            a4.0             Modified to create an ouput HTML file showing player status or logfile issues.                                        
+            a4.0             Modified to create an ouput HTML file showing player status or logfile issues. 
+            b1.0             Created Additional Pages Skills and Hours Survived. Added Navbar to All Pages.                          
 #>
 #MODIFY BELOW WITH THE PATH TO YOUR PVP LOG, but leave the LOGFILE alone
 $logpath = "\\192.168.1.148\appdata\projectzomboid\Zomboid\Logs\" # Path to dedicated server logs
@@ -105,10 +106,25 @@ if ($logindata -ne $null) {
         .online {
             background-color: #388E3C; /* Darker green for online status */
         }
+          .navbar {
+            margin: 20px;
+        }
+        .navbar a {
+            margin: 10px;
+            padding: 10px;
+            color: #E0E0E0;
+            text-decoration: none;
+            border: 1px solid #E0E0E0;
+        }
     </style>
 </head>
 <body>
     <h2>Project Zomboid Players</h2>
+     <div class="navbar">
+        <a href="skills.html">Skills Comparison</a>
+        <a href="survived_hours.html">Hours Survived Comparison</a>
+        <a href="index.html">Player Status</a>
+    </div>
     <table>
         <tr>
             <th>Name</th>
